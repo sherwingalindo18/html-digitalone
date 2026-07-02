@@ -89,6 +89,18 @@ strong{color:var(--navy-ink)}
 .section--navy{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);color:#C9D1E8}
 .section--navy h2,.section--navy h3{color:#fff}
 .section-head{max-width:720px;margin:0 auto 3.2rem;text-align:center}
+
+/* Legal pages (Terms of Service, Privacy Policy) */
+.legal-content{max-width:820px;margin-inline:auto}
+.legal-updated{color:var(--gray-500);font-size:.92rem;margin:0 0 2.4rem}
+.legal-content h2{margin:2.6rem 0 .8rem;font-size:1.4rem;color:var(--navy-ink)}
+.legal-content h2:first-of-type{margin-top:0}
+.legal-content h3{margin:1.7rem 0 .5rem;font-size:1.08rem;color:var(--navy)}
+.legal-content p{margin:0 0 1.05rem;line-height:1.78}
+.legal-content ul{margin:0 0 1.3rem;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem}
+.legal-content li{line-height:1.7}
+.legal-content a{color:var(--red);text-decoration:underline}
+.legal-content strong{color:var(--navy-ink)}
 .section-head--left{margin-inline:0;text-align:left}
 .section-head p{margin-top:.9rem;font-size:1.1rem}
 
