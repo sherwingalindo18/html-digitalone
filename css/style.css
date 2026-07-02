@@ -385,16 +385,16 @@ strong{color:var(--navy-ink)}
 .portfolio-card p{font-size:.9rem;margin-bottom:1rem}
 
 /* ---------- Video gallery ---------- */
-.video-masonry{columns:3;column-gap:1.8rem}
+.video-masonry{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;align-items:stretch}
 .video-card{
-  break-inside:avoid;margin-bottom:1.8rem;position:relative;
+  position:relative;display:flex;flex-direction:column;height:100%;
   border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);
   border:1px solid var(--gray-100);background:#fff;
   transition:transform .35s var(--ease),box-shadow .35s var(--ease);
 }
 .video-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.video-card .thumb{position:relative;cursor:pointer}
-.video-card .thumb img{width:100%}
+.video-card .thumb{position:relative;cursor:pointer;aspect-ratio:16/9;overflow:hidden}
+.video-card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .video-card .play{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   background:linear-gradient(180deg,rgba(11,19,48,.05),rgba(11,19,48,.45));
@@ -407,7 +407,7 @@ strong{color:var(--navy-ink)}
   box-shadow:var(--shadow);transition:transform .3s var(--ease),background .3s,color .3s;
 }
 .video-card .thumb:hover .play i{transform:scale(1.12);background:var(--red);color:#fff}
-.video-card .body{padding:1.2rem 1.4rem 1.4rem}
+.video-card .body{padding:1.2rem 1.4rem 1.4rem;flex:1 1 auto}
 .video-card h3{font-size:1.05rem;margin:0 0 .3rem}
 .video-card p{font-size:.88rem;margin:0}
 
