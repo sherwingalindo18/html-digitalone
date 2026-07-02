@@ -1,688 +1,497 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital One Reviews - Reference Template</title>
-    <style>
-        /* --- DESIGN SYSTEM & CSS VARIABLES --- */
-        :root {
-            --primary-blue: #0d233a;     /* Deep brand blue */
-            --accent-red: #e63946;       /* Vibrant brand red */
-            --light-bg: #f8f9fa;         /* Soft gray for background alternating */
-            --text-dark: #2b2d42;        /* Readability dark gray */
-            --text-light: #ffffff;       /* Pure white */
-            --placeholder-gray: #e2e8f0; /* Balanced image placeholder color */
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            color: var(--text-dark);
-            background-color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* --- GLOBAL UTILITIES --- */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-alt {
-            background-color: var(--light-bg);
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--accent-red);
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-            letter-spacing: 2px;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-red {
-            background-color: var(--accent-red);
-            color: var(--text-light);
-        }
-
-        .btn-red:hover {
-            background-color: #c92a36;
-            transform: translateY(-2px);
-        }
-
-        .btn-blue {
-            background-color: var(--primary-blue);
-            color: var(--text-light);
-        }
-
-        .btn-blue:hover {
-            background-color: #1a3a5f;
-            transform: translateY(-2px);
-        }
-
-        /* Placeholders */
-        .img-placeholder {
-            background-color: var(--placeholder-gray);
-            border: 2px dashed #cbd5e1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-weight: 500;
-            border-radius: 8px;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .icon-placeholder {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(230, 57, 70, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            color: var(--accent-red);
-        }
-
-        /* --- HEADER & NAVIGATION --- */
-        header {
-            background-color: var(--primary-blue);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .logo-area {
-            width: 180px;
-            height: 45px;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-link {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            font-size: 1rem;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-red);
-        }
-
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-light);
-            transition: var(--transition);
-        }
-
-        /* --- HOME / HERO SECTION --- */
-        #home {
-            padding-top: 160px;
-            padding-bottom: 100px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, #153556 100%);
-            color: var(--text-light);
-        }
-
-        .hero-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .hero-text h1 span {
-            color: var(--accent-red);
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .hero-image {
-            height: 350px;
-            width: 100%;
-        }
-
-        /* --- STATS / SOCIAL PROOF STRIP --- */
-        .stats-strip {
-            background-color: var(--accent-red);
-            color: var(--text-light);
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            margin-bottom: 5px;
-        }
-
-        .stat-item p {
-            font-size: 1rem;
-            font-weight: 500;
-            opacity: 0.9;
-        }
-
-        /* --- ABOUT US SECTION --- */
-        .about-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-video-placeholder {
-            height: 350px;
-            width: 100%;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            color: var(--primary-blue);
-            margin-bottom: 15px;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: #4a5568;
-        }
-
-        /* --- SERVICES SECTION --- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background-color: var(--text-light);
-            padding: 35px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary-blue);
-            transition: var(--transition);
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-top-color: var(--accent-red);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .service-card h3 {
-            font-size: 1.4rem;
-            color: var(--primary-blue);
-            margin-bottom: 15px;
-        }
-
-        .service-card p {
-            color: #4a5568;
-            font-size: 0.95rem;
-        }
-
-        /* --- CONTACT SECTION --- */
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 50px;
-        }
-
-        .contact-info {
-            background-color: var(--primary-blue);
-            color: var(--text-light);
-            padding: 40px;
-            border-radius: 8px;
-        }
-
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .info-icon {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-red);
-            font-weight: bold;
-        }
-
-        .info-text p {
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        .info-text h4 {
-            font-size: 1.1rem;
-        }
-
-        /* Form */
-        .contact-form {
-            background-color: var(--text-light);
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--primary-blue);
-            font-size: 0.9rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #cbd5e1;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent-red);
-            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: #061321;
-            color: var(--text-light);
-            padding: 40px 0;
-            text-align: center;
-            font-size: 0.9rem;
-            border-top: 3px solid var(--accent-red);
-        }
-
-        footer p {
-            opacity: 0.7;
-        }
-
-        /* --- RESPONSIVE MEDIA QUERIES --- */
-        @media (max-width: 992px) {
-            .hero-wrapper, .about-wrapper, .contact-wrapper {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .hero-text {
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-video-placeholder {
-                order: -1; /* Puts visual block on top of text on tablets/mobile */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background-color: var(--primary-blue);
-                flex-direction: column;
-                align-items: center;
-                padding-top: 50px;
-                gap: 40px;
-                transition: var(--transition);
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>Digital One Reviews | Reputation & Review Management for Local Businesses</title>
+  <meta name="description" content="Digital One Reviews handles review monitoring, responses, fake-review protection and five-star review generation for restaurants and local businesses in Bucks County, PA and beyond.">
+  <meta name="keywords" content="reputation management, review management, Google reviews, local business marketing, Bucks County PA, restaurant reviews">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://digitalonereviews.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Digital One Reviews">
+  <meta property="og:title" content="Digital One Reviews | Reputation & Review Management for Local Businesses">
+  <meta property="og:description" content="Digital One Reviews handles review monitoring, responses, fake-review protection and five-star review generation for restaurants and local businesses in Bucks County, PA and beyond.">
+  <meta property="og:url" content="https://digitalonereviews.com/">
+  <meta property="og:image" content="https://digitalonereviews.com/images/hero/og-cover.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Digital One Reviews | Reputation & Review Management for Local Businesses">
+  <meta name="twitter:description" content="Digital One Reviews handles review monitoring, responses, fake-review protection and five-star review generation for restaurants and local businesses in Bucks County, PA and beyond.">
+  <meta name="twitter:image" content="https://digitalonereviews.com/images/hero/og-cover.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/logo/d1-logo.svg">
+
+  <!-- Fonts: preconnect + preload for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Digital One Reviews",
+    "description": "Reputation management, review management, local listings, web development, video production and social media management for local businesses.",
+    "url": "https://digitalonereviews.com/",
+    "logo": "https://digitalonereviews.com/images/logo/d1-logo.svg",
+    "image": "https://digitalonereviews.com/images/hero/og-cover.jpg",
+    "telephone": "+12674820275",
+    "email": "reviews@digitaloneinc.com",
+    "priceRange": "$$",
+    "areaServed": ["Hatboro PA", "Doylestown PA", "Warrington PA", "Bucks County PA", "Philadelphia PA"],
+    "sameAs": ["https://www.facebook.com/digitalonemarketingsolutions", "https://www.linkedin.com/company/digitalonereviews/", "https://maps.app.goo.gl/KN1YRk26AeGGKsuQ9"]
+  }
+  </script>
 </head>
-<body>
+<body data-page="home">
 
-    <!-- --- HEADER / NAVIGATION --- -->
-    <header>
-        <div class="container navbar">
-            <div class="logo-area img-placeholder">
-                [ LOGO PLACEHOLDER ]
-            </div>
-            
-            <nav>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="#home" class="nav-link">HOME</a></li>
-                    <li><a href="#about" class="nav-link">ABOUT US</a></li>
-                    <li><a href="#services" class="nav-link">SERVICES</a></li>
-                    <li><a href="#contact" class="nav-link">CONTACT</a></li>
-                </ul>
-            </nav>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
-            <div class="menu-toggle" id="mobileMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+  <!-- ================= HEADER ================= -->
+  <header class="site-header header--onhero">
+    <div class="header-inner">
+
+      <a class="brand" href="index.html" aria-label="Digital One Reviews — home">
+        <img src="images/logo/d1-logo-white.svg" alt="Digital One Reviews logo" width="146" height="40">
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="main-nav" id="main-nav">
+          <li><a href="index.html" class="is-active" aria-current="page">Home</a></li>
+          <li><a href="review-management-services.html" >Review Management</a></li>
+          <li class="has-dropdown">
+            <a href="#" aria-haspopup="true">Services</a>
+            <ul class="dropdown">
+              <li><a href="reputation-management.html">Reputation Management</a></li>
+              <li><a href="local-listings.html">Local Listings</a></li>
+              <li><a href="web-development.html">Web Development</a></li>
+              <li><a href="video-production.html">Video Production</a></li>
+              <li><a href="social-media-management.html">Social Media Management</a></li>
+            </ul>
+          </li>
+          <li><a href="about.html" >About Us</a></li>
+          <li><a href="blog.html" >Blog</a></li>
+          <li><a href="review-stand.html" >Review Stand</a></li>
+          <li><a href="contact.html" >Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <div class="social-mini">
+          <a href="https://www.facebook.com/digitalonemarketingsolutions" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/company/digitalonereviews/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="https://maps.app.goo.gl/KN1YRk26AeGGKsuQ9" target="_blank" rel="noopener" aria-label="Google Reviews"><i class="fa-brands fa-google" aria-hidden="true"></i></a>
         </div>
-    </header>
+        <a class="btn btn--red" href="contact.html">Free Review Audit</a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
 
-    <!-- --- HOME / HERO SECTION --- -->
-    <section id="home">
-        <div class="container hero-wrapper">
-            <div class="hero-text">
-                <h1>Reviews Turn People Into <span>Loyal Customers</span></h1>
-                <p>We handle the good, the bad, the ugly, and even the fake ones! Take the stress out of online reputation management so you can focus entirely on executing exceptional customer experiences.</p>
-                <a href="#contact" class="btn btn-red">SCHEDULE A FREE AUDIT</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-label="Introduction">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Reputation Management Agency</span>
+            <h1 data-text-reveal>Reviews turn strangers into <span class="accent">loyal customers.</span></h1>
+            <p class="hero-lede">We handle the good, the bad, the ugly — and even the fake. Digital One Reviews monitors every platform, answers every review, and builds you a steady stream of genuine five-star feedback, so you can focus on running your business.</p>
+            <div class="hero-actions">
+              <a class="btn btn--red" href="contact.html">Schedule a Free Review Audit</a>
+              <a class="btn btn--ghost-light" href="review-management-services.html">See How It Works</a>
             </div>
-            <div class="hero-image img-placeholder">
-                [ HERO IMAGE PLACEHOLDER ]
+            <p class="trust-line"><span class="stars" aria-hidden="true">★★★★★</span> Trusted by 40+ local businesses across Bucks County &amp; beyond</p>
+          </div>
+
+          <div class="hero-visual" data-parallax>
+            <div class="hero-card-stack" aria-hidden="true">
+              <div class="review-float">
+                <span class="stars">★★★★★</span>
+                <p>"They replied to a rough review within the hour and actually won the customer back. Unreal."</p>
+                <span class="who"><span class="avatar">MB</span> Mike B. — Tavern Owner</span>
+              </div>
+              <div class="review-float review-float--red">
+                <span class="stars">★★★★★</span>
+                <p>"Went from 3.9 to 4.7 on Google in six months. Fridays have never been busier."</p>
+                <span class="who"><span class="avatar">LR</span> Lisa R. — Café Owner</span>
+              </div>
+              <div class="review-float">
+                <span class="stars">★★★★★</span>
+                <p>"The review stand alone paid for itself. Customers tap, rate, done."</p>
+                <span class="who"><span class="avatar">JD</span> Joe D. — Deli Owner</span>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- --- STATS STRIP --- -->
-    <section class="stats-strip">
-        <div class="container stats-grid">
-            <div class="stat-item">
-                <h3>95%</h3>
-                <p>Read Reviews Before Visiting</p>
-            </div>
-            <div class="stat-item">
-                <h3>88%</h3>
-                <p>Trust Online Reviews Like Recommendations</p>
-            </div>
-            <div class="stat-item">
-                <h3>93%</h3>
-                <p>Say Reviews Impact Purchase Decisions</p>
-            </div>
+    <!-- ============ WHY CHOOSE US ============ -->
+    <section class="section" aria-label="Why choose Digital One Reviews">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Why Choose Us</span>
+          <h2>Your reputation, handled by real people</h2>
+          <p>One bad review can ruin your day — and keeping up with Google, Yelp, Facebook and TripAdvisor can drain your week. We take that weight off your shoulders.</p>
         </div>
+        <div class="grid grid-3">
+
+          <article class="card reveal" data-delay="0">
+            <span class="icon-tile"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span>
+            <h3>Rapid Review Responses</h3>
+            <p>Every review gets a fast, personalized, solution-focused reply — turning frustrated customers into second chances and happy ones into repeat visits.</p>
+          </article>
+
+          <article class="card reveal" data-delay="1">
+            <span class="icon-tile card--navy-tile"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+            <h3>Fake Review Protection</h3>
+            <p>We watch for fraudulent one-star review-bombing, document the evidence, and help you report and remove attacks before they dent your rating.</p>
+          </article>
+
+          <article class="card reveal" data-delay="2">
+            <span class="icon-tile"><i class="fa-solid fa-star" aria-hidden="true"></i></span>
+            <h3>More Five-Star Feedback</h3>
+            <p>We build a review-generation strategy around your real customers — text and email campaigns that make leaving a great review effortless.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- --- ABOUT US SECTION --- -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">About Us</h2>
-            <p class="section-subtitle">Who We Are</p>
-            
-            <div class="about-wrapper">
-                <div class="about-video-placeholder img-placeholder">
-                    [ EXPLANATORY VIDEO PLACEHOLDER ]
-                </div>
-                <div class="about-text">
-                    <h3>Your Dedicated Partner in Online Reputation</h3>
-                    <p>Digital One is a leading digital marketing agency specialized in helping modern businesses establish an authoritative, clean, and trusted presence online.</p>
-                    <p>We know that monitoring platforms like Google, Yelp, and TripAdvisor can be exhausting. Our dedicated teams take over the daily chatter—monitoring feedback paths, tracking attacks, and amplifying your genuine five-star consumer experiences to turn casual search traffic into loyal patrons.</p>
-                    <a href="#services" class="btn btn-blue">Explore Our System</a>
-                </div>
-            </div>
+    <!-- ============ STATISTICS ============ -->
+    <section class="section section--navy" aria-label="Review statistics">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">The Numbers</span>
+          <h2>Reviews decide who wins locally</h2>
+          <p>Reviews are one of the strongest signals in local Google rankings — and the first thing your next customer checks.</p>
         </div>
+        <div class="stats">
+          <div class="stat reveal">
+            <div class="num"><span data-count="95" data-suffix="">0</span><span class="sym">%</span></div>
+            <p class="label">read reviews before choosing a local business</p>
+          </div>
+          <div class="stat reveal" data-delay="1">
+            <div class="num"><span data-count="88" data-suffix="">0</span><span class="sym">%</span></div>
+            <p class="label">trust reviews as much as personal recommendations</p>
+          </div>
+          <div class="stat reveal" data-delay="2">
+            <div class="num"><span data-count="93" data-suffix="">0</span><span class="sym">%</span></div>
+            <p class="label">say reviews influence their buying decision</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- --- SERVICES SECTION --- -->
-    <section id="services" class="section-alt">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <p class="section-subtitle">What We Do Best</p>
-            
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card">
-                    <div class="icon-placeholder">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                        </svg>
-                    </div>
-                    <h3>Reputation Management</h3>
-                    <p>We monitor multiple major directories, drafting professional responses to structural, baseline, and multi-tier feedback metrics efficiently.</p>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="service-card">
-                    <div class="icon-placeholder">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                        </svg>
-                    </div>
-                    <h3>Local Listings</h3>
-                    <p>Keep your vital details, locations, operational hours, and contact paths perfectly matching and standardized across search engines.</p>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="service-card">
-                    <div class="icon-placeholder">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.868 4.146a.5.5 0 1 0-.736-.678L1.17 6.825a.5.5 0 0 0 0 .678l2.962 3.357a.5.5 0 1 0 .736-.678L2.21 7.165l2.658-3.019zm6.264-.678a.5.5 0 1 0-.736.678L13.05 7.165l-2.658 3.019a.5.5 0 1 0 .736.678l2.962-3.357a.5.5 0 0 0 0-.678l-2.962-3.357z"/>
-                        </svg>
-                    </div>
-                    <h3>Web Development</h3>
-                    <p>Clean, high-converting, fully customized responsive designs engineered strictly around optimizing regional performance parameters.</p>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="service-card">
-                    <div class="icon-placeholder">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
-                        </svg>
-                    </div>
-                    <h3>Video Production</h3>
-                    <p>High-impact, premium narrative video assets outlining your company structure to quickly boost real engagement conversions.</p>
-                </div>
-            </div>
+    <!-- ============ SERVICES OVERVIEW ============ -->
+    <section class="section section--tint" aria-label="Our services">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">What We Do</span>
+          <h2>One partner for your entire online presence</h2>
         </div>
+        <div class="grid grid-3">
+          <article class="card service-card reveal">
+            <div class="thumb"><img src="images/services/reputation-management.jpg" alt="Reputation management service" loading="lazy" width="1200" height="675"></div>
+            <div class="body">
+              <h3>Reputation Management</h3>
+              <p>Monitoring, responses, recovery and protection across every review platform your customers use.</p>
+              <a class="card-link" href="reputation-management.html">Explore service <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="card service-card reveal" data-delay="1">
+            <div class="thumb"><img src="images/services/local-listings.jpg" alt="Local listings service" loading="lazy" width="1200" height="675"></div>
+            <div class="body">
+              <h3>Local Listings</h3>
+              <p>Accurate, consistent business information across Google, Apple Maps, Bing and 50+ directories.</p>
+              <a class="card-link" href="local-listings.html">Explore service <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="card service-card reveal" data-delay="2">
+            <div class="thumb"><img src="images/services/web-development.jpg" alt="Web development service" loading="lazy" width="1200" height="675"></div>
+            <div class="body">
+              <h3>Web Development</h3>
+              <p>Fast, secure, mobile-first websites designed to convert searchers into paying customers.</p>
+              <a class="card-link" href="web-development.html">Explore service <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="card service-card reveal">
+            <div class="thumb"><img src="images/services/video-production.jpg" alt="Video production service" loading="lazy" width="1200" height="675"></div>
+            <div class="body">
+              <h3>Video Production</h3>
+              <p>Scroll-stopping promo videos that show off your business the way it deserves to be seen.</p>
+              <a class="card-link" href="video-production.html">Explore service <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="card service-card reveal" data-delay="1">
+            <div class="thumb"><img src="images/services/social-media.jpg" alt="Social media management service" loading="lazy" width="1200" height="675"></div>
+            <div class="body">
+              <h3>Social Media Management</h3>
+              <p>Consistent, on-brand posting that keeps your business in front of the customers who matter.</p>
+              <a class="card-link" href="social-media-management.html">Explore service <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="card service-card reveal" data-delay="2">
+            <div class="thumb"><img src="images/services/review-management.jpg" alt="Review management service" loading="lazy" width="1200" height="675"></div>
+            <div class="body">
+              <h3>Review Management</h3>
+              <p>Our flagship service — request, manage and respond to reviews from one central place.</p>
+              <a class="card-link" href="review-management-services.html">Explore service <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- --- CONTACT SECTION --- -->
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title">Contact Us</h2>
-            <p class="section-subtitle">Get In Touch</p>
-            
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h3>We Are Here to Help</h3>
-                    <p style="margin-bottom: 30px; opacity: 0.8;">Take absolute control of your digital identity assets right away. Connect directly with our optimization team.</p>
-                    
-                    <div class="info-item">
-                        <div class="info-icon">P</div>
-                        <div class="info-text">
-                            <p>Call Us Directly</p>
-                            <h4>(267) 482-0275</h4>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">E</div>
-                        <div class="info-text">
-                            <p>Send an Email</p>
-                            <h4>reviews@digitaloneinc.com</h4>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">A</div>
-                        <div class="info-text">
-                            <p>Office Location</p>
-                            <h4>Bucks County, PA</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-form">
-                    <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Form submitted! (Demo Sandbox Mode)');">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="John Doe" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">How can we help?</label>
-                            <input type="text" id="subject" class="form-control" placeholder="e.g., Free Review Audit Request" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" placeholder="Tell us more about your business..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-red" style="width: 100%;">Send Message</button>
-                    </form>
-                </div>
-            </div>
+    <!-- ============ PROCESS ============ -->
+    <section class="section" aria-label="Our review management process">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">How It Works</span>
+          <h2>A simple, proven review process</h2>
         </div>
+        <div class="steps">
+          <div class="step reveal">
+            <h3>Request Reviews</h3>
+            <p>Our review software sends friendly text and email campaigns to your customers, inviting genuine feedback at exactly the right moment.</p>
+          </div>
+          <div class="step reveal" data-delay="1">
+            <h3>Manage Reviews</h3>
+            <p>Every review from every location and every platform flows into one central dashboard — nothing slips through the cracks.</p>
+          </div>
+          <div class="step reveal" data-delay="2">
+            <h3>Respond &amp; Recover</h3>
+            <p>A dedicated customer-care representative replies to every positive and negative review with a personal, on-brand response.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- --- FOOTER --- -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Digital One Reviews Reference Layout. All rights reserved.</p>
-            <p style="font-size: 0.75rem; margin-top: 5px;">Built responsive using raw HTML and CSS guidelines.</p>
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section section--tint" aria-label="Client testimonials">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Happy Clients</span>
+          <h2>What business owners say about us</h2>
         </div>
-    </footer>
+        <div class="testi-slider">
+          <div class="testi-track">
+            <div class="testi-slides">
+              <div class="testi-slide">
+                <span class="stars" aria-hidden="true">★★★★★</span>
+                <blockquote>"Before Digital One, negative reviews sat unanswered for weeks. Now every single one gets a thoughtful reply the same day — and our rating has climbed every month since."</blockquote>
+                <p class="who">Restaurant Owner</p>
+                <p class="role">Doylestown, PA</p>
+              </div>
+              <div class="testi-slide">
+                <span class="stars" aria-hidden="true">★★★★★</span>
+                <blockquote>"We were hit with a wave of fake one-star reviews from someone who'd never set foot in our pub. Digital One documented everything and got them removed. Lifesavers."</blockquote>
+                <p class="who">Pub Owner</p>
+                <p class="role">Bucks County, PA</p>
+              </div>
+              <div class="testi-slide">
+                <span class="stars" aria-hidden="true">★★★★★</span>
+                <blockquote>"The new website plus the review campaigns doubled our online orders. It's the best marketing money we've spent, full stop."</blockquote>
+                <p class="who">Pizzeria Owner</p>
+                <p class="role">Jamison, PA</p>
+              </div>
+            </div>
+          </div>
+          <button class="testi-arrow testi-arrow--prev" aria-label="Previous testimonial"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+          <button class="testi-arrow testi-arrow--next" aria-label="Next testimonial"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+          <div class="testi-nav" role="tablist" aria-label="Testimonial navigation"></div>
+        </div>
+      </div>
+    </section>
 
-    <!-- --- JAVASCRIPT FOR MOBILE NAV TOGGLE --- -->
-    <script>
-        const mobileMenu = document.getElementById('mobileMenu');
-        const navMenu = document.getElementById('navMenu');
-        const navLinks = document.querySelectorAll('.nav-link');
+    <!-- ============ GOOGLE REVIEW CTA ============ -->
+    <section class="section section--navy" aria-label="Google review call to action">
+      <div class="container" style="text-align:center;max-width:760px">
+        <span class="eyebrow">Google Reviews</span>
+        <h2 class="reveal">Happy with Digital One? Tell Google.</h2>
+        <p class="reveal" data-delay="1" style="margin:1rem auto 2rem">Your feedback helps other local business owners find a team they can trust with their reputation.</p>
+        <a class="btn btn--red reveal" data-delay="2" href="https://maps.app.goo.gl/KN1YRk26AeGGKsuQ9" target="_blank" rel="noopener"><i class="fa-brands fa-google" aria-hidden="true"></i> Leave Us a Google Review</a>
+      </div>
+    </section>
 
-        // Toggle mobile window overlay menu
-        mobileMenu.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            
-            // Basic animation transformation for menu toggle lines
-            const spans = mobileMenu.querySelectorAll('span');
-            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
-            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
-            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
-        });
+    <!-- ============ INDUSTRIES ============ -->
+    <section class="section" aria-label="Industries we serve">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Industries Served</span>
+          <h2>Built for local, service-first businesses</h2>
+        </div>
+        <ul class="industry-pills reveal">
+          <li><i class="fa-solid fa-utensils" aria-hidden="true"></i> Restaurants</li>
+          <li><i class="fa-solid fa-beer-mug-empty" aria-hidden="true"></i> Bars &amp; Taverns</li>
+          <li><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i> Pizzerias</li>
+          <li><i class="fa-solid fa-mug-hot" aria-hidden="true"></i> Cafés &amp; Diners</li>
+          <li><i class="fa-solid fa-scissors" aria-hidden="true"></i> Salons &amp; Spas</li>
+          <li><i class="fa-solid fa-bread-slice" aria-hidden="true"></i> Bakeries &amp; Delis</li>
+          <li><i class="fa-solid fa-store" aria-hidden="true"></i> Retail &amp; Home Services</li>
+        </ul>
+      </div>
+    </section>
 
-        // Autoclose menu overlay when tracking a menu anchor click
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                const spans = mobileMenu.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            });
-        });
-    </script>
+    <!-- ============ LATEST BLOG PREVIEW ============ -->
+    <section class="section section--tint" aria-label="Latest from the blog">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">From the Blog</span>
+          <h2>Reputation insights, minus the jargon</h2>
+        </div>
+        <div class="grid grid-3">
+          <article class="card blog-card reveal">
+            <div class="thumb"><img src="images/blog/respond-negative-reviews.jpg" alt="Responding to negative reviews" loading="lazy" width="1000" height="625"></div>
+            <div class="body">
+              <div class="post-meta"><span class="cat">Reputation</span><span>6 min read</span></div>
+              <h3>How to Respond to a Negative Review (Without Making It Worse)</h3>
+              <p>The exact framework our care team uses to turn angry reviewers into returning customers.</p>
+              <a class="card-link" href="blog.html">Read article <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="card blog-card reveal" data-delay="1">
+            <div class="thumb"><img src="images/blog/google-review-signals.jpg" alt="Google review ranking signals" loading="lazy" width="1000" height="625"></div>
+            <div class="body">
+              <div class="post-meta"><span class="cat">SEO</span><span>8 min read</span></div>
+              <h3>Yes, Reviews Affect Your Google Ranking — Here's How</h3>
+              <p>Quantity, velocity, keywords and responses: the review signals Google's local algorithm actually rewards.</p>
+              <a class="card-link" href="blog.html">Read article <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="card blog-card reveal" data-delay="2">
+            <div class="thumb"><img src="images/blog/more-five-star-reviews.jpg" alt="Earning more five star reviews" loading="lazy" width="1000" height="625"></div>
+            <div class="body">
+              <div class="post-meta"><span class="cat">Growth</span><span>5 min read</span></div>
+              <h3>The Polite Art of Asking for a Five-Star Review</h3>
+              <p>When to ask, how to ask, and the one mistake that gets businesses penalized by Google.</p>
+              <a class="card-link" href="blog.html">Read article <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Final CTA -->
+    <section class="section" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div>
+            <h2>Ready to take charge of your online reputation?</h2>
+            <p>Get a free, no-pressure review audit — we'll show you exactly where you stand on Google and what it would take to climb.</p>
+          </div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a class="btn btn--light" href="contact.html">Schedule a Free Review Audit</a>
+            <a class="btn btn--ghost-light" href="tel:+12674820275"><i class="fa-solid fa-phone" aria-hidden="true"></i> (267) 482-0275</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+
+        <div class="footer-brand">
+          <img src="images/logo/d1-logo-white.svg" alt="Digital One Reviews logo" width="146" height="40" loading="lazy">
+          <p>Digital One Reviews helps local businesses take control of their online reputation — monitoring every platform, answering every review, and turning happy customers into five-star advocates.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/digitalonemarketingsolutions" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/company/digitalonereviews/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://maps.app.goo.gl/KN1YRk26AeGGKsuQ9" target="_blank" rel="noopener" aria-label="Google Reviews"><i class="fa-brands fa-google" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <nav aria-label="Quick links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="review-stand.html">Review Stand</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Services">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="review-management-services.html">Review Management</a></li>
+            <li><a href="reputation-management.html">Reputation Management</a></li>
+            <li><a href="local-listings.html">Local Listings</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+            <li><a href="video-production.html">Video Production</a></li>
+            <li><a href="social-media-management.html">Social Media Management</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h4>Get in Touch</h4>
+          <ul class="footer-contact">
+            <li><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+12674820275">(267) 482-0275</a></li>
+            <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:reviews@digitaloneinc.com">reviews@digitaloneinc.com</a></li>
+            <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Serving Bucks County, PA &amp; beyond</span></li>
+          </ul>
+          <a class="btn btn--red" href="https://maps.app.goo.gl/KN1YRk26AeGGKsuQ9" target="_blank" rel="noopener" style="margin-top:1.3rem">
+            <i class="fa-solid fa-star" aria-hidden="true"></i> Review Us on Google
+          </a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> Digital One. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating actions -->
+  <div class="fab-stack">
+    <a class="fab fab--call" href="tel:+12674820275" aria-label="Call Digital One Reviews"><i class="fa-solid fa-phone" aria-hidden="true"></i></a>
+    <a class="fab fab--contact" href="contact.html" aria-label="Contact us"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i></a>
+  </div>
+  <button class="back-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
+
+  <script src="js/script.js" defer></script>
+<script>
+  // Swap header logo color when the sticky header gains its white background
+  (function(){
+    var img = document.querySelector('.brand img');
+    var header = document.querySelector('.site-header');
+    if(!img || !header) return;
+    function swap(){ img.src = header.classList.contains('is-scrolled')
+      ? 'images/logo/d1-logo.svg' : 'images/logo/d1-logo-white.svg'; }
+    window.addEventListener('scroll', swap, {passive:true}); swap();
+  })();
+</script>
 </body>
 </html>
