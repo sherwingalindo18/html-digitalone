@@ -585,10 +585,11 @@ strong{color:var(--navy-ink)}
 .footer-social a:hover{background:var(--red);transform:translateY(-3px)}
 .footer-bottom{
   border-top:1px solid rgba(255,255,255,.08);
-  padding-block:1.5rem;display:flex;flex-wrap:wrap;gap:1rem;
-  align-items:center;justify-content:space-between;font-size:.85rem;
+  padding-block:1.5rem;display:flex;flex-direction:column;gap:.7rem;
+  align-items:center;justify-content:center;text-align:center;font-size:.85rem;
 }
-.footer-legal{display:flex;gap:1.5rem}
+.footer-bottom p{margin:0}
+.footer-legal{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
 
 /* ---------- Floating action buttons ---------- */
 .fab-stack{position:fixed;right:1.4rem;bottom:1.4rem;z-index:900;display:flex;flex-direction:column;gap:.8rem}
