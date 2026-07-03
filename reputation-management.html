@@ -317,7 +317,7 @@
     if(!img || !header) return;
     function swap(){ img.src = header.classList.contains('is-scrolled')
       ? 'images/logo/D1-logo.png' : 'images/logo/D1-logo-white.png'; }
-    window.addEventListener('scroll', swap, {passive:true}); swap();
+    new MutationObserver(swap).observe(header, {attributes:true, attributeFilter:['class']}); swap();
   })();
 </script>
 </body>
