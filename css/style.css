@@ -185,7 +185,8 @@ strong{color:var(--navy-ink)}
 .site-header:not(.is-scrolled).header--onhero .social-mini a{color:#fff}
 
 /* Dropdown */
-.has-dropdown > a::after{content:" ▾";font-size:.7em}
+.dropdown-caret{display:inline-block;margin-left:.3em;font-size:.9rem;line-height:1;vertical-align:middle;transition:transform .25s var(--ease)}
+.has-dropdown:hover .dropdown-caret,.has-dropdown:focus-within .dropdown-caret{transform:rotate(180deg)}
 .dropdown{
   position:absolute;top:calc(100% + 10px);left:0;min-width:250px;
   background:#fff;border-radius:var(--radius-sm);box-shadow:var(--shadow);
