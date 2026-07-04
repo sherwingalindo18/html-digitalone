@@ -298,6 +298,10 @@ strong{color:var(--navy-ink)}
   box-shadow:0 10px 24px rgba(200,16,46,.28);
 }
 .card--navy-tile .icon-tile{background:linear-gradient(150deg,var(--navy),var(--navy-deep));box-shadow:0 10px 24px rgba(27,42,92,.28)}
+/* Soft tinted card backgrounds — adds brand colour so cards aren't flat white */
+.card--tinted{background:linear-gradient(158deg,#FCFDFF 0%,#EDF1FA 58%,#E6EDF8 100%);border-color:#DBE3F3}
+.card--tinted:hover{border-color:#C4CFEA}
+.card--tinted.card--navy-tile{background:linear-gradient(158deg,#FFFCFC 0%,#FBEBED 100%);border-color:#F3D5D9}
 .card-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.2rem;font-weight:700;font-size:.92rem;color:var(--red)}
 .card-link:hover{gap:.7rem;color:var(--red-dark)}
 
