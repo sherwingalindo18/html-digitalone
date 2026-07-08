@@ -299,10 +299,20 @@ strong{color:var(--navy-ink)}
   box-shadow:0 10px 24px rgba(200,16,46,.28);
 }
 .card--navy-tile .icon-tile{background:linear-gradient(150deg,var(--navy),var(--navy-deep));box-shadow:0 10px 24px rgba(27,42,92,.28)}
-/* Soft tinted card backgrounds — adds brand colour so cards aren't flat white */
-.card--tinted{background:linear-gradient(158deg,#FCFDFF 0%,#EDF1FA 58%,#E6EDF8 100%);border-color:#DBE3F3}
-.card--tinted:hover{border-color:#C4CFEA}
-.card--tinted.card--navy-tile{background:linear-gradient(158deg,#FFFCFC 0%,#FBEBED 100%);border-color:#F3D5D9}
+/* Solid brand-colour cards — bold navy / red fills instead of flat white,
+   alternating across the grid for a checkerboard effect */
+.card--tinted{background:var(--navy);border-color:transparent;color:#fff}
+.card--tinted:nth-child(even){background:var(--red)}
+.card--tinted:hover{border-color:transparent}
+.card--tinted h3{color:#fff}
+.card--tinted .card-title-link,.card--tinted .card-title-link:hover{color:#fff}
+.card--tinted p{color:#DBE3F5}
+.card--tinted:nth-child(even) p{color:#FBE0E1}
+.card--tinted .card-link,.card--tinted .card-link:hover{color:#fff}
+.card--tinted p a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+/* Icon tiles: red tile on navy cards, white tile on red cards */
+.card--tinted:nth-child(odd) .icon-tile{background:linear-gradient(150deg,var(--red),var(--red-dark));box-shadow:0 10px 24px rgba(0,0,0,.22)}
+.card--tinted:nth-child(even) .icon-tile{background:#fff;color:var(--red);box-shadow:0 10px 24px rgba(0,0,0,.22)}
 .card-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.2rem;font-weight:700;font-size:.92rem;color:var(--red)}
 .card-link:hover{gap:.7rem;color:var(--red-dark)}
 
