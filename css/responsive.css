@@ -71,6 +71,9 @@
   .footer-main{grid-template-columns:1fr;gap:2rem;padding-block:3.5rem 2.4rem}
   .footer-bottom{flex-direction:column;text-align:center;justify-content:center}
   .hero{min-height:auto}
+  .hero--photo .hero-bg{background:
+    linear-gradient(180deg,rgba(4,21,48,.86) 0%,rgba(4,21,48,.74) 45%,rgba(4,21,48,.62) 100%),
+    url("../images/hero/hero-reviews.jpg") center top/cover no-repeat}
   .hero-actions .btn{width:100%}
   .review-float{position:static;margin-bottom:1rem;max-width:100%;animation:none}
   .hero-visual .hero-card-stack{min-height:0}
