@@ -266,16 +266,19 @@ strong{color:var(--navy-ink)}
 .hero--photo .hero-grid{grid-template-columns:1fr}
 .hero--photo .hero-copy{max-width:660px}
 
-/* Photo-background hero (inner pages) — set per page via --hero-img.
-   Falls back to a clean dark navy hero when the image is absent. */
+/* Photo-background hero (inner pages) — the photo is set inline per page via
+   background-image (resolved relative to the page, unlike a var() url), and this
+   ::before adds the dark navy overlay so headings stay readable. Falls back to a
+   clean dark navy hero when no inline image is present. */
 .hero--inner.hero--photo{
   background-color:var(--navy-ink);
-  background-image:
-    linear-gradient(112deg,rgba(4,21,48,.95) 0%,rgba(4,21,48,.82) 40%,rgba(5,29,66,.46) 78%,rgba(4,21,48,.32) 100%),
-    var(--hero-img,none);
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
+}
+.hero--inner.hero--photo::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(112deg,rgba(4,21,48,.95) 0%,rgba(4,21,48,.82) 40%,rgba(5,29,66,.46) 78%,rgba(4,21,48,.34) 100%);
 }
 
 /* Parallax layer */
