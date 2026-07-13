@@ -266,6 +266,18 @@ strong{color:var(--navy-ink)}
 .hero--photo .hero-grid{grid-template-columns:1fr}
 .hero--photo .hero-copy{max-width:660px}
 
+/* Photo-background hero (inner pages) — set per page via --hero-img.
+   Falls back to a clean dark navy hero when the image is absent. */
+.hero--inner.hero--photo{
+  background-color:var(--navy-ink);
+  background-image:
+    linear-gradient(112deg,rgba(4,21,48,.95) 0%,rgba(4,21,48,.82) 40%,rgba(5,29,66,.46) 78%,rgba(4,21,48,.32) 100%),
+    var(--hero-img,none);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
 /* Parallax layer */
 .hero-visual{position:relative}
 .hero-visual .hero-card-stack{position:relative;min-height:420px}
