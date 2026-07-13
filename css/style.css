@@ -552,10 +552,20 @@ strong{color:var(--navy-ink)}
     radial-gradient(700px 300px at 90% 0%, rgba(255,255,255,.14), transparent 60%),
     linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%);
   color:#fff;padding:clamp(2.6rem,6vw,4.5rem);
-  display:flex;flex-wrap:wrap;gap:2rem;align-items:center;justify-content:space-between;
+  display:flex;flex-direction:column;align-items:flex-start;gap:1.6rem;
 }
+.cta-band > *{position:relative;z-index:1;max-width:min(100%,560px)}
 .cta-band h2{color:#fff;max-width:20ch}
 .cta-band p{color:#FFD9DF;max-width:46ch;margin:0}
+/* Photo on the right, blended into the red band with a left-to-right fade */
+.cta-band::after{
+  content:"";position:absolute;top:0;right:0;bottom:0;width:44%;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(90deg,var(--red) 0%,rgba(205,22,25,.9) 18%,rgba(205,22,25,.45) 58%,rgba(205,22,25,.14) 100%),
+    url("../images/services/satisfaction-rating.jpg");
+  background-size:cover;background-position:center;
+}
+@media (max-width:860px){ .cta-band::after{display:none} }
 
 /* ---------- Timeline (about) ---------- */
 .timeline{position:relative;max-width:760px;margin-inline:auto;padding-left:2.2rem}
